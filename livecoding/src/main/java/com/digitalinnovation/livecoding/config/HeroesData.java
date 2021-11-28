@@ -1,5 +1,7 @@
 package com.digitalinnovation.livecoding.config;
 
+import com.amazonaws.auth.AWSStaticCredentialsProvider;
+import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.client.builder.AwsClientBuilder;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
 import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
@@ -15,6 +17,7 @@ public class HeroesData {
 
     AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
       .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(ENDPOINT_DYNAMO, REGION_DYNAMO))
+      .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials("fake", "fake")))
       .build();
     DynamoDB dynamoDB = new DynamoDB(client);
 
